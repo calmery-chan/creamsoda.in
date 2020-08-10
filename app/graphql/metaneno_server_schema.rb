@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MetanenoServerSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
