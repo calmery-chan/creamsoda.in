@@ -20,7 +20,7 @@ class Admin::SerialCodesController < Admin::ApplicationController
   def update
     @serial_code = SerialCode.find(params[:id])
     @serial_code.update!(state: params[:state])
-  rescue ArgumentError
+  rescue ActiveRecord::RecordNotSaved
     status 400
   end
 
