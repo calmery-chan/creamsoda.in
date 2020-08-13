@@ -1,10 +1,5 @@
+# frozen_string_literal: true
+
 json.data do
-  json.array! @serial_codes do |serial_code|
-    json.call(
-      serial_code,
-      :id,
-      :serial_code,
-      :state
-    )
-  end
+  json.array! @serial_codes, partial: 'serial_code', as: :serial_code
 end
