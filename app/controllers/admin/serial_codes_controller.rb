@@ -20,6 +20,8 @@ class Admin::SerialCodesController < Admin::ApplicationController
   def update
     @serial_code = SerialCode.find(params[:id])
     @serial_code.update!(state: params[:state])
+  rescue ActiveRecord::RecordNotFound
+    status 404
   rescue ActiveRecord::RecordNotSaved
     status 400
   end
