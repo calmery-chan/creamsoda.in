@@ -14,7 +14,7 @@ class SerialCode < ApplicationRecord
   end
 
   def updateable
-    throw(:abort) if self.state_changed? && self.created?
+    throw(:abort) if state_changed? && created?
   end
 
   def destroyable

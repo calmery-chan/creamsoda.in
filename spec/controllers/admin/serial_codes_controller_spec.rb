@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Admin::SerialCodesController, type: :controller do
   describe '#index' do
     let!(:serial_code_1) { SerialCode.create! }
@@ -139,3 +140,4 @@ RSpec.describe Admin::SerialCodesController, type: :controller do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
