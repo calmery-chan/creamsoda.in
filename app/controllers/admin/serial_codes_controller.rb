@@ -2,6 +2,6 @@
 
 class Admin::SerialCodesController < Admin::ApplicationController
   def index
-    render status: 200
+    @serial_codes = SerialCode.all
   end
 end
