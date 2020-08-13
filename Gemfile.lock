@@ -184,8 +184,6 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.87.0)
-    rubocop-rspec (1.42.0)
-      rubocop (>= 0.87.0)
     ruby-progressbar (1.10.1)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
@@ -230,7 +228,6 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  rubocop-rspec
   spring
   spring-commands-rspec
   spring-commands-rubocop
