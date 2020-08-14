@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root 'root#index'
 
+  resources :serial_codes, only: [:show], param: :serial_code
+
   namespace :admin do
     resources :serial_codes
   end

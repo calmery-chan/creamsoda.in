@@ -5,10 +5,6 @@ class Admin::ApplicationController < ActionController::API
 
   before_action :authenticate
 
-  def status(http_status_code)
-    render status: http_status_code, body: nil
-  end
-
   private
 
   def authenticate
