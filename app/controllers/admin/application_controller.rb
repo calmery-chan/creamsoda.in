@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::ApplicationController < ActionController::API
+class Admin::ApplicationController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :authenticate
