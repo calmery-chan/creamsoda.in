@@ -4,5 +4,7 @@ json.call(
   serial_code,
   :id,
   :serial_code,
-  :state
+  :state,
+  :created_at,
+  :updated_at
 )
