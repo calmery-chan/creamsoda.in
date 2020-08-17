@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::ApplicationController < ApplicationController
-  include ActionController::HttpAuthentication::Token::ControllerMethods
+  include ActionController::Cookies
 
   before_action :authenticate
 
@@ -10,8 +10,8 @@ class Admin::ApplicationController < ApplicationController
   def authenticate
     return true if Rails.env.test?
 
-    authenticate_or_request_with_http_token do |t|
-      ActiveSupport::SecurityUtils.secure_compare(t, ENV['ADMIN_AUTHORIZATION_TOKEN'] || '')
-    end
+    @administrator = Administrator.find(session[:administrator_id])
+  rescue ActiveRecord::RecordNotFound
+    status 401
   end
 end
