@@ -10,5 +10,6 @@ class AdminController < ApplicationController
     end
 
     session[:administrator_id] = administrator.id
+    status 200
   end
 end
