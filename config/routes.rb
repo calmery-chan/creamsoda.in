@@ -5,11 +5,10 @@ Rails.application.routes.draw do
 
   root 'root#index'
 
-  resources :admin, only: [:create]
+  resources :admin, only: [:index, :create]
   resources :serial_codes, only: [:show], param: :serial_code
 
   namespace :admin do
-    resources :ping, only: [:index]
     resources :serial_codes
   end
 end

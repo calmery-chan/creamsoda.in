@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class AdminController < ApplicationController
+  def index
+    Administrator.find(session[:administrator_id])
+    status 200
+  rescue ActiveRecord::RecordNotFound
+    status 401
+  end
+
   def create
     administrator = Administrator.find_by(name: params[:name])
 
