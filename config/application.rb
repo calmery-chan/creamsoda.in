@@ -39,3 +39,8 @@ module MetanenoServer
     config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
+
+Raven.configure do |config|
+  config.dsn = ENV['SENTRY_DSN']
+  config.environments = %w[production]
+end
