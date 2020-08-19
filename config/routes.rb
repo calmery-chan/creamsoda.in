@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root 'root#index'
 
-  resources :admin, only: [:index, :create]
+  resources :admin, only: %i[index create]
   resources :serial_codes, only: [:show], param: :serial_code
 
   namespace :admin do
