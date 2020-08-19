@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :serial_codes, only: [:show], param: :serial_code
 
   namespace :admin do
+    resources :ping, only: [:index]
     resources :serial_codes
   end
 end
