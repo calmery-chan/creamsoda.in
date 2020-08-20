@@ -29,6 +29,7 @@ gem 'rack-cors'
 
 gem 'kaminari'
 gem 'rails_same_site_cookie'
+gem 'recaptcha'
 gem 'sentry-raven'
 
 group :development, :test do
