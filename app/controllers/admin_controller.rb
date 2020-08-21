@@ -9,6 +9,8 @@ class AdminController < ApplicationController
   end
 
   def create
+    verify_recaptcha!
+
     administrator = Administrator.find_by(name: params[:name])
 
     if administrator.nil? || !administrator.authenticate(params[:password])
@@ -18,5 +20,7 @@ class AdminController < ApplicationController
 
     session[:administrator_id] = administrator.id
     status 200
+  rescue Recaptcha::VerifyError
+    status 401
   end
 end
