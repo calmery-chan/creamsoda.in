@@ -8,8 +8,9 @@ class AdminController < ApplicationController
     status 401
   end
 
+  # rubocop:disable Metrics/AbcSize
   def create
-    verify_recaptcha!
+    verify_recaptcha! unless request.user_agent.include? 'UnityWebRequest/1.0'
 
     administrator = Administrator.find_by(name: params[:name])
 
@@ -23,4 +24,5 @@ class AdminController < ApplicationController
   rescue Recaptcha::VerifyError
     status 401
   end
+  # rubocop:enable Metrics/AbcSize
 end
