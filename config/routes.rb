@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :serial_codes
 
     namespace :contentful do
+      resources :models, only: %i[create update]
       resources :works, only: [:index]
     end
   end
