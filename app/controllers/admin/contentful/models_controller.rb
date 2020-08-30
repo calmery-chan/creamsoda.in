@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Contentful::ModelsController < Admin::ApplicationController
+  # rubocop:disable  Metrics/AbcSize, Metrics/MethodLength
   def create
     management = Contentful::Management::Client.new(ENV['CONTENTFUL_MANAGEMENT_TOKEN'])
     environment = management.environments(ENV['CONTENTFUL_SPACE']).find(ENV['CONTENTFUL_ENVIRONMENT'])
@@ -20,7 +21,7 @@ class Admin::Contentful::ModelsController < Admin::ApplicationController
     asset.publish
 
     @model = Contentful::Model.create
-    @model.name = file_name.split(".glb").first
+    @model.name = file_name.split('.glb').first
     @model.file = asset
     @model.position_x = 0
     @model.position_y = 0
@@ -34,7 +35,9 @@ class Admin::Contentful::ModelsController < Admin::ApplicationController
     @model.save
     @model.publish
   end
+  # rubocop:enable  Metrics/AbcSize, Metrics/MethodLength
 
+  # rubocop:disable  Metrics/AbcSize, Metrics/MethodLength
   def update
     management = Contentful::Management::Client.new(ENV['CONTENTFUL_MANAGEMENT_TOKEN'])
     environment = management.environments(ENV['CONTENTFUL_SPACE']).find(ENV['CONTENTFUL_ENVIRONMENT'])
@@ -60,4 +63,5 @@ class Admin::Contentful::ModelsController < Admin::ApplicationController
 
     status 200
   end
+  # rubocop:enable  Metrics/AbcSize, Metrics/MethodLength
 end
