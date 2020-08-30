@@ -17,7 +17,8 @@ class Admin::Contentful::ModelsController < Admin::ApplicationController
                                    .create(params[:data].tempfile.path)
                                    .to_link_json
 
-    asset = environment.assets.create(title: file_name, file: file).process_file
+    asset = environment.assets.create(title: file_name, file: file)
+    asset.process_file
     asset.publish
 
     @model = Contentful::Model.create
