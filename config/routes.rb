@@ -5,15 +5,17 @@ Rails.application.routes.draw do
 
   root 'root#index'
 
-  resources :admin, only: %i[index create]
-  resources :serial_codes, only: [:show], param: :serial_code
+  scope '/a/dream' do
+    resources :admin, only: %i[index create]
+    resources :serial_codes, only: [:show], param: :serial_code
 
-  namespace :admin do
-    resources :serial_codes
+    namespace :admin do
+      resources :serial_codes
 
-    namespace :contentful do
-      resources :models, only: %i[create update]
-      resources :works, only: [:index]
+      namespace :contentful do
+        resources :models, only: %i[create update]
+        resources :works, only: [:index]
+      end
     end
   end
 end
