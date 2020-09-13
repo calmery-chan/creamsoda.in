@@ -32,6 +32,7 @@ gem 'kaminari'
 gem 'rails_same_site_cookie'
 gem 'recaptcha'
 gem 'sentry-raven'
+gem 'twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
