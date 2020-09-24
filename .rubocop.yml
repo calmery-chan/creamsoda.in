@@ -96,7 +96,7 @@ Style/OptionalBooleanParameter: # (new in 0.89)
 Style/RedundantAssignment: # (new in 0.87)
   Enabled: true
 Style/RedundantFetchBlock: # (new in 0.86)
-  Enabled: true
+  Enabled: false
 Style/RedundantFileExtensionInRequire: # (new in 0.88)
   Enabled: true
 Style/RedundantRegexpCharacterClass: # (new in 0.85)
