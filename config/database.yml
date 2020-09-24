@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: metaneno_server_production
-  username: metaneno_server
-  password: <%= ENV['METANENO_SERVER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
