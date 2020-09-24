@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :serial_codes
+      resources :works, only: [:index]
     end
   end
 end
