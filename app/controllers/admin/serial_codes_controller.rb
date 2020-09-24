@@ -2,7 +2,10 @@
 
 class Admin::SerialCodesController < Admin::ApplicationController
   def index
-    @serial_codes = SerialCode.all.order(:id).page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.json { @serial_codes = SerialCode.all.order(:id).page(params[:page]).per(10) }
+    end
   end
 
   def create

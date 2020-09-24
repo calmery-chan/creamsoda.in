@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :serial_codes, only: [:show], param: :serial_code
 
     namespace :admin do
+      resources :canvas, only: [:index]
       resources :serial_codes
+      resources :signin, only: [:index]
       resources :works, only: [:index]
     end
   end

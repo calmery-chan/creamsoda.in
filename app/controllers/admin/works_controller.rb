@@ -2,6 +2,9 @@
 
 class Admin::WorksController < Admin::ApplicationController
   def index
-    @works = ApplicationContent::Work.all.load
+    respond_to do |format|
+      format.html
+      format.json { @works = ApplicationContent::Work.all.load }
+    end
   end
 end
