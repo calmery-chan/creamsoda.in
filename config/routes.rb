@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   root 'root#index'
 
   scope(Rails.env.production? ? '/a/dream' : '') do
+    resources :admin, only: %i[index create]
     resources :serial_codes, only: [:show], param: :serial_code
+
+    namespace :admin do
+      resources :serial_codes
+    end
   end
 end
