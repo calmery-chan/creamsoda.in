@@ -161,7 +161,15 @@ Rails/WhereExists: # (new in 2.7)
   Enabled: true
 Rails/WhereNot: # (new in 2.8)
   Enabled: true
+RSpec/AnyInstance:
+  Enabled: false
 RSpec/ContextWording:
   Enabled: false
+RSpec/DescribedClass:
+  Enabled: false
 RSpec/FilePath:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/PredicateMatcher:
   Enabled: false
