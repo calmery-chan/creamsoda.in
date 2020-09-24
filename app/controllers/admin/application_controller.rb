@@ -6,6 +6,8 @@ class Admin::ApplicationController < ApplicationController
   private
 
   def authenticate
+    return true if Rails.env.test?
+
     @administrator = Administrator.find(session[:administrator_id])
 
     Raven.user_context(id: session[:administrator_id])
