@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useFrame } from "react-three-fiber";
-import { Players } from "~/utils/canvas/use-multiplayer";
+import { Players } from "../../utils/canvas/use-multiplayer";
 
 export const OtherPlayer: React.FC<{ x: number; y: number; z: number }> = (
   pos

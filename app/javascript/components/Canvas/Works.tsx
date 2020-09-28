@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Vector3, Box3, Scene } from "three";
 import GLTFLoader from "three-gltf-loader";
-import { Work as WorkType, Works as WorksType } from "~/types/contentful";
+import { Work as WorkType, Works as WorksType } from "../../types/contentful";
 
 const Work: React.FC<WorkType> = ({ model }) => {
   const [scene, setScene] = useState<Scene>();
