@@ -5,6 +5,7 @@ class Admin::ApplicationController < ApplicationController
 
   private
 
+  # rubocop:disable Metrics/AbcSize
   def authenticate
     return true if Rails.env.test?
 
@@ -20,4 +21,5 @@ class Admin::ApplicationController < ApplicationController
 
     status 401
   end
+  # rubocop:enable Metrics/AbcSize
 end
