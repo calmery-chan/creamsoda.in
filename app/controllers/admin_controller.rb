@@ -2,10 +2,15 @@
 
 class AdminController < ApplicationController
   def index
-    Administrator.find(session[:administrator_id])
-    status 200
-  rescue ActiveRecord::RecordNotFound
-    status 401
+    respond_to do |format|
+      format.html
+      format.json do
+        Administrator.find(session[:administrator_id])
+        status 200
+      rescue ActiveRecord::RecordNotFound
+        status 401
+      end
+    end
   end
 
   # rubocop:disable Metrics/AbcSize

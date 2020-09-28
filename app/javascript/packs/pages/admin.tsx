@@ -1,22 +1,20 @@
-import { NextPage } from "next";
-import Link from "next/link";
 import React from "react";
-import { withAdmin } from "~/utils/with-admin";
+import { render } from "../../utils/render";
 
-const Admin: NextPage = () => {
+const Admin: React.FC = () => {
   return (
     <>
       <div>
-        <Link href="/admin/serial_codes">Serial Codes</Link>
+        <a href="/admin/serial_codes">Serial Codes</a>
       </div>
       <div>
-        <Link href="/admin/canvas">Canvas</Link>
+        <a href="/admin/canvas">Canvas</a>
       </div>
       <div>
-        <Link href="/admin/works">Works</Link>
+        <a href="/admin/works">Works</a>
       </div>
     </>
   );
 };
 
-export default withAdmin(Admin);
+render(Admin);
