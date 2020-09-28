@@ -64,9 +64,7 @@ const SignIn: React.FC = () => {
   }, []);
 
   return (
-    <GoogleReCaptchaProvider
-      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-    >
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_SITE_KEY}>
       <Page>
         <GoogleReCaptcha onVerify={handleOnChangeRecaptchaResponse} />
         <div className="flex justify-center">
