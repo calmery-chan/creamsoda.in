@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 class AdminController < ApplicationController
+  # rubocop:disable Metrics/MethodLength
   def index
     respond_to do |format|
-      format.html
+      format.html do
+        Administrator.find(session[:administrator_id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to admin_signin_index_path
+      end
+
       format.json do
         Administrator.find(session[:administrator_id])
         status 200
@@ -12,6 +18,7 @@ class AdminController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # rubocop:disable Metrics/AbcSize
   def create
