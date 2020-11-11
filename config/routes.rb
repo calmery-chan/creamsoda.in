@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :serial_codes, only: [:show], param: :serial_code
 
     namespace :cheki do
-      resources :images, only: [:create, :show]
+      resources :images, only: %i[create show]
     end
 
     namespace :admin do
