@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     resources :admin, only: %i[index create]
     resources :serial_codes, only: [:show], param: :serial_code
 
+    namespace :cheki do
+      resources :images, only: [:create, :show]
+    end
+
     namespace :admin do
       resources :canvas, only: [:index]
       resources :serial_codes

@@ -34,3 +34,4 @@ yarn-debug.log*
 
 .env
 
+public/uploads
