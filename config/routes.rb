@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     namespace :cheki do
       resources :images, only: %i[create show]
+      resources :temporary_images, only: [:create]
     end
 
     namespace :admin do
