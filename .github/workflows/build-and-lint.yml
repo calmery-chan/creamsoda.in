@@ -44,4 +44,4 @@ jobs:
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           path: "**/node_modules"
       - run: npm ci
-      - run: npx eslint --ext .js,.ts,.tsx --ignore-path .gitignore .
+      - run: npx eslint --ext .js,.ts --ignore-path .gitignore .
