@@ -45,6 +45,23 @@
   "engines": {
     "node": "12.20.1"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.(j|t)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    }
+  },
   "license": "UNLICENSED",
   "name": "creamsoda.in",
   "private": true,
