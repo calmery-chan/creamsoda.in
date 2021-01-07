@@ -3,6 +3,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
+import fastifyCors from "fastify-cors";
 import fastifySecureSession from "fastify-secure-session";
 import { AppModule } from "./app.module";
 import "./utils/sentry";
@@ -12,6 +13,15 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
+
+  app.register(fastifyCors, {
+    origin: [
+      "http://localhost:3000",
+      "https://metaneno.art",
+      "https://metaneno-art.calmery-chan.vercel.app",
+      /https:\/\/metaneno-art-[\d|\w]+\.vercel\.app$/,
+    ],
+  });
 
   app.register(fastifySecureSession, {
     secret: process.env.SESSION_SECRET,

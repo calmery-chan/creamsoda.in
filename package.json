@@ -9,6 +9,7 @@
     "@sentry/node": "5.29.2",
     "bcrypt": "5.0.0",
     "fastify": "3.9.2",
+    "fastify-cors": "5.1.0",
     "fastify-secure-session": "2.3.0",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.3"
