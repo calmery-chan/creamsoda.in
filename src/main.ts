@@ -16,6 +16,8 @@ async function bootstrap() {
 
   app.register(fastifyCors, {
     credentials: true,
+    maxAge: 1800, // 30 minutes
+    methods: ["GET", "POST", "PUT"],
     origin: [
       "http://localhost:3000",
       "https://metaneno.art",
