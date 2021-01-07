@@ -1,8 +1,24 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from "@nestjs/platform-fastify";
+import { AppModule } from "./app.module";
+import { cors, session } from "./utils/middlewares";
+import "./utils/sentry";
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter()
+  );
+
+  cors(app);
+  session(app);
+
+  console.log(process.env.PORT || 5000);
+
+  await app.listen(process.env.PORT || 5000);
 }
+
 bootstrap();
