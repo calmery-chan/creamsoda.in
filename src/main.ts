@@ -16,7 +16,7 @@ async function bootstrap() {
   cors(app);
   session(app);
 
-  console.log(process.env);
+  console.log(process.env.PORT || 5000);
 
   await app.listen(process.env.PORT || 5000);
 }
