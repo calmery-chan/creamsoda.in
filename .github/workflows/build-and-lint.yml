@@ -1,0 +1,47 @@
+name: Build And Lint
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version: [14.15.0]
+        os: [ubuntu-20.04]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: "**/node_modules"
+      - run: npm ci
+      - run: npm run build
+
+  lint:
+    strategy:
+      matrix:
+        node-version: [14.15.0]
+        os: [ubuntu-20.04]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: "**/node_modules"
+      - run: npm ci
+      - run: npx eslint --ext .js,.ts,.tsx --ignore-path .gitignore .
