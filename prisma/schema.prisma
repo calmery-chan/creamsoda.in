@@ -29,5 +29,6 @@ enum UserRole {
 // Cheki
 
 model ChekiEditedImage {
-  id String @default(uuid()) @id
+  createdAt DateTime @default(now())
+  id        String   @default(uuid()) @id
 }
