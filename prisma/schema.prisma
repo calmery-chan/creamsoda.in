@@ -25,3 +25,9 @@ enum UserRole {
   DEVELOPER
   USER
 }
+
+// Cheki
+
+model ChekiEditedImage {
+  id String @default(uuid()) @id
+}
