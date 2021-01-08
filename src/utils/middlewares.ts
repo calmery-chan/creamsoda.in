@@ -1,5 +1,6 @@
 import { NestFastifyApplication } from "@nestjs/platform-fastify";
 import fastifyCors from "fastify-cors";
+import fastifyMultipart from "fastify-multipart";
 import fastifySecureSession from "fastify-secure-session";
 
 export const cors = (app: NestFastifyApplication) =>
@@ -14,6 +15,9 @@ export const cors = (app: NestFastifyApplication) =>
       /https:\/\/metaneno-art-[\d|\w]+\.vercel\.app$/,
     ],
   });
+
+export const multipart = (app: NestFastifyApplication) =>
+  app.register(fastifyMultipart);
 
 export const session = (app: NestFastifyApplication) =>
   app.register(fastifySecureSession, {

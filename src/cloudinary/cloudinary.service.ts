@@ -1,5 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { ImageTransformationOptions, v2 as cloudinary } from "cloudinary";
+import {
+  ImageTransformationOptions,
+  UploadApiOptions,
+  v2 as cloudinary,
+} from "cloudinary";
 
 @Injectable()
 export class CloudinaryService {
@@ -15,6 +19,23 @@ export class CloudinaryService {
     return cloudinary.url(publicId, {
       secure: true,
       ...options,
+    });
+  }
+
+  upload(
+    steam: NodeJS.ReadableStream,
+    options?: UploadApiOptions
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      steam.pipe(
+        cloudinary.uploader.upload_stream(options || {}, (error, result) => {
+          if (result) {
+            resolve();
+          } else {
+            reject(error);
+          }
+        })
+      );
     });
   }
 }

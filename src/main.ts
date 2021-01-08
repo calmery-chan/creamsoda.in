@@ -4,7 +4,7 @@ import {
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 import { AppModule } from "./app.module";
-import { cors, session } from "./utils/middlewares";
+import { cors, multipart, session } from "./utils/middlewares";
 import "./utils/sentry";
 
 async function bootstrap() {
@@ -14,6 +14,7 @@ async function bootstrap() {
   );
 
   cors(app);
+  multipart(app);
   session(app);
 
   await app.listen(process.env.PORT || 5000, "0.0.0.0");

@@ -1,5 +1,13 @@
-import { Controller, Get, HttpStatus, Param, Res } from "@nestjs/common";
-import { FastifyReply } from "fastify";
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Req,
+  Res,
+} from "@nestjs/common";
+import { FastifyReply, FastifyRequest } from "fastify";
 import { resolveControllerPrefix } from "src/utils/controller";
 import { ChekiService } from "./cheki.service";
 
@@ -21,6 +29,28 @@ export class ChekiController {
         image_url: this.chekiService.getImageUrl(id),
         og_image_url: this.chekiService.getOgImageUrl(id),
       },
+    });
+  }
+
+  @Post("/images")
+  async postChekiEditedImage(
+    @Req() request: FastifyRequest,
+    @Res() response: FastifyReply
+  ) {
+    const { fieldname, file, mimetype } = await request.file();
+
+    if (fieldname !== "image" || mimetype !== "image/png") {
+      return response.status(HttpStatus.BAD_REQUEST).send();
+    }
+
+    const id = await this.chekiService.create(file);
+
+    if (!id) {
+      return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
+    }
+
+    response.status(HttpStatus.OK).send({
+      data: { id },
     });
   }
 }
