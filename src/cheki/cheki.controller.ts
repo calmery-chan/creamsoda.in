@@ -8,7 +8,7 @@ import {
   Res,
 } from "@nestjs/common";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { resolveControllerPrefix } from "src/utils/controller";
+import { resolveControllerPrefix } from "../utils/controller";
 import { ChekiService } from "./cheki.service";
 
 @Controller(resolveControllerPrefix("cheki"))
