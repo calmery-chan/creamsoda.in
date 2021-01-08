@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ChekiEditedImage, Prisma } from "@prisma/client";
-import { PrismaService } from "src/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import { CloudinaryService } from "../cloudinary/cloudinary.service";
 
 @Injectable()
