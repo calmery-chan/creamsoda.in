@@ -1,7 +1,8 @@
 import { Controller, Get, Param } from "@nestjs/common";
+import { resolveControllerPrefix } from "src/utils/controller";
 import { ChekiService } from "./cheki.service";
 
-@Controller("cheki")
+@Controller(resolveControllerPrefix("cheki"))
 export class ChekiController {
   constructor(private readonly chekiService: ChekiService) {}
 
