@@ -7,7 +7,7 @@ import { ChekiService } from "./cheki.service";
 export class ChekiController {
   constructor(private readonly chekiService: ChekiService) {}
 
-  @Get("/edited_images/:id")
+  @Get("/images/:id")
   async getChekiEditedImage(
     @Param("id") id: string,
     @Res() response: FastifyReply
