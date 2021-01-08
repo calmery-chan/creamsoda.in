@@ -21,15 +21,20 @@ export class ChekiService {
   }
 
   getImageUrl(id: string) {
-    return this.cloudinaryService.getUrl(`cheki/edited_images/${id}`);
+    return this.cloudinaryService.getUrl(
+      `noneme-chan-cheki/edited-images/${id}`
+    );
   }
 
   getOgImageUrl(id: string) {
-    return this.cloudinaryService.getUrl(`cheki/edited_images/${id}`, {
-      background: "#FFF",
-      crop: "pad",
-      height: 630,
-      width: 1200,
-    });
+    return this.cloudinaryService.getUrl(
+      `noneme-chan-cheki/edited-images/${id}`,
+      {
+        background: "#FFF",
+        crop: "pad",
+        height: 630,
+        width: 1200,
+      }
+    );
   }
 }
