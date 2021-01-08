@@ -1,6 +1,5 @@
-import { Controller, Get, Req } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { AppService } from "./app.service";
-import { FastifyRequest } from "fastify";
 import { resolveControllerPrefix } from "./utils/controller";
 
 @Controller(resolveControllerPrefix())
