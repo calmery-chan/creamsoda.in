@@ -11,8 +11,8 @@ export const cors = (app: NestFastifyApplication) =>
     origin: [
       "http://localhost:3000",
       "https://metaneno.art",
-      "https://metaneno-art.calmery-chan.vercel.app",
-      /https:\/\/metaneno-art-[\d|\w]+\.vercel\.app$/,
+      // "https://metaneno-art.calmery-chan.vercel.app",
+      // /https:\/\/metaneno-art-[\d|\w]+\.vercel\.app$/,
     ],
   });
 
