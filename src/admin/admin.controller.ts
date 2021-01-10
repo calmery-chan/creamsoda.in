@@ -11,6 +11,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import * as FastifySecureSession from "fastify-secure-session";
 import { UserService } from "../user/user.service";
 import { resolveControllerPrefix } from "../utils/controller";
+import { send } from "../utils/discord";
 import { verifyRecaptcha } from "../utils/recaptcha";
 
 const SESSION_USER_ID = "user_id";
@@ -54,8 +55,18 @@ export class AdminController {
     const user = await this.userService.authenticate(name, password);
 
     if (!user) {
+      send({
+        description: `An attempt was made to log in (${name})`,
+        title: "Failed to login",
+      });
+
       return response.status(HttpStatus.UNAUTHORIZED).send();
     }
+
+    send({
+      description: `Logged in as ${name}`,
+      title: "Succeeded to login",
+    });
 
     session.set(SESSION_USER_ID, user.id);
 

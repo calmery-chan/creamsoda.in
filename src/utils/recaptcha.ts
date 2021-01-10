@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Sentry } from "./sentry";
 
 type SuccessResponse = {
   challenge_ts: string;
@@ -21,10 +22,16 @@ export const verifyRecaptcha = async (response: string) => {
   params.append("response", response);
   params.append("secret", process.env.RECAPTCHA_SECRET_KEY);
 
-  const { data } = await axios.post<SuccessResponse | FailureResponse>(
-    "https://www.google.com/recaptcha/api/siteverify",
-    params
-  );
+  try {
+    const { data } = await axios.post<SuccessResponse | FailureResponse>(
+      "https://www.google.com/recaptcha/api/siteverify",
+      params
+    );
 
-  return isSuccess(data);
+    return isSuccess(data);
+  } catch (error) {
+    Sentry.captureException(error);
+
+    return false;
+  }
 };
