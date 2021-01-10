@@ -23,4 +23,12 @@ export const session = (app: NestFastifyApplication) =>
   app.register(fastifySecureSession, {
     secret: process.env.SESSION_SECRET,
     salt: process.env.SESSION_SALT,
+    cookie: {
+      httpOnly: true,
+      maxAge: 1800,
+      path: "/admin",
+      sameSite: "none",
+      secure: true,
+      signed: true,
+    },
   });
