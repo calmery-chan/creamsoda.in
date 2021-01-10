@@ -1,16 +1,17 @@
 import {
-  Body,
   Controller,
   Get,
   HttpStatus,
   Post,
+  Req,
   Res,
   Session,
 } from "@nestjs/common";
-import { FastifyReply } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 import * as FastifySecureSession from "fastify-secure-session";
 import { UserService } from "../user/user.service";
 import { resolveControllerPrefix } from "../utils/controller";
+import { verifyRecaptcha } from "../utils/recaptcha";
 
 const SESSION_USER_ID = "user_id";
 
@@ -34,11 +35,22 @@ export class AdminController {
 
   @Post()
   async post(
-    @Body("name") name: string,
-    @Body("password") password: string,
+    @Req() request: FastifyRequest,
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
+    const name: string | undefined = request.body["name"];
+    const password: string | undefined = request.body["password"];
+    const recaptcha: string | undefined = request.body["recaptcha"];
+
+    if (!name || !password || !recaptcha) {
+      return response.status(HttpStatus.BAD_REQUEST).send();
+    }
+
+    if (!(await verifyRecaptcha(recaptcha))) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
     const user = await this.userService.authenticate(name, password);
 
     if (!user) {
