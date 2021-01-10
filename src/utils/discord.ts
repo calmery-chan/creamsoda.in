@@ -13,6 +13,10 @@ export const send = async ({
   title?: string;
   url?: string;
 }) => {
+  if (process.env.NODE_ENV !== "production") {
+    return;
+  }
+
   await axios.post(process.env.DISCORD_WEBHOOK_URL, {
     embeds: [
       {

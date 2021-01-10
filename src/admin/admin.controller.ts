@@ -55,7 +55,7 @@ export class AdminController {
     const user = await this.userService.authenticate(name, password);
 
     if (!user) {
-      send({
+      await send({
         description: `An attempt was made to log in (${name})`,
         title: "Failed to login",
       });
@@ -63,7 +63,7 @@ export class AdminController {
       return response.status(HttpStatus.UNAUTHORIZED).send();
     }
 
-    send({
+    await send({
       description: `Logged in as ${name}`,
       title: "Succeeded to login",
     });
