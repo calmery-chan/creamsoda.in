@@ -40,6 +40,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
+    const ip = request.connection.remoteAddress || request.socket.remoteAddress;
     const name: string | undefined = request.body["name"];
     const password: string | undefined = request.body["password"];
     const recaptcha: string | undefined = request.body["recaptcha"];
@@ -57,7 +58,7 @@ export class AdminController {
     if (!user) {
       await send({
         color: 16711680,
-        description: `An attempt was made to log in (${name})`,
+        description: `An attempt was made to log in (${name}) (${ip})`,
         title: "Failed to login",
       });
 
@@ -65,7 +66,7 @@ export class AdminController {
     }
 
     await send({
-      description: `Logged in as ${name}`,
+      description: `Logged in (${name}) (${ip})`,
       title: "Succeeded to login",
     });
 
