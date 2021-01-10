@@ -56,6 +56,7 @@ export class AdminController {
 
     if (!user) {
       await send({
+        color: 16711680,
         description: `An attempt was made to log in (${name})`,
         title: "Failed to login",
       });
