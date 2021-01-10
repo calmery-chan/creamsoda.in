@@ -9,6 +9,7 @@ import {
 } from "@nestjs/common";
 import { FastifyReply, FastifyRequest } from "fastify";
 import * as FastifySecureSession from "fastify-secure-session";
+import * as requestIp from "request-ip";
 import { UserService } from "../user/user.service";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
@@ -40,7 +41,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    const ip = request.connection.remoteAddress || request.socket.remoteAddress;
+    const ip = requestIp.getClientIp(request);
     const name: string | undefined = request.body["name"];
     const password: string | undefined = request.body["password"];
     const recaptcha: string | undefined = request.body["recaptcha"];
