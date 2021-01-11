@@ -1,0 +1,34 @@
+query GetWorks {
+  worksCollection {
+    items {
+      description {
+        json
+      }
+      thumbnailsCollection {
+        items {
+          height
+          url
+          width
+        }
+      }
+      model {
+        file {
+          contentType
+          fileName
+          size
+          url
+        }
+        positionX
+        positionY
+        positionZ
+        rotateX
+        rotateY
+        rotateZ
+        scaleX
+        scaleY
+        scaleZ
+      }
+      title
+    }
+  }
+}
