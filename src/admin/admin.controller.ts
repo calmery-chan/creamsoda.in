@@ -28,9 +28,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    const maybeUserId = session.get(SESSION_USER_ID);
-
-    if (!maybeUserId || !this.userService.findById(maybeUserId)) {
+    if (!this.isAuthorized(session)) {
       return response.status(HttpStatus.UNAUTHORIZED).send();
     }
 
@@ -53,6 +51,10 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
+    if (this.isAuthorized(session)) {
+      return response.status(HttpStatus.CONFLICT).send();
+    }
+
     const ip = requestIp.getClientIp(request);
 
     if (!name || !password || !recaptcha) {
@@ -120,5 +122,12 @@ export class AdminController {
     }
 
     return response.status(HttpStatus.OK).send({ data: { id: entryId } });
+  }
+
+  // Private
+
+  private isAuthorized(session: FastifySecureSession.Session) {
+    const maybeUserId = session.get(SESSION_USER_ID);
+    return maybeUserId && this.userService.findById(maybeUserId);
   }
 }
