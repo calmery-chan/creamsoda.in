@@ -94,7 +94,7 @@ export class AdminController {
   ) {
     const file = await request.file();
 
-    if (!file) {
+    if (!file || file.mimetype !== "model/gltf+json") {
       return response.status(HttpStatus.BAD_REQUEST).send();
     }
 
