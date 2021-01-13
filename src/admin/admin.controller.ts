@@ -92,8 +92,13 @@ export class AdminController {
   @Post("/entries/3d-models")
   async postWorks(
     @Req() request: FastifyRequest,
-    @Res() response: FastifyReply
+    @Res() response: FastifyReply,
+    @Session() session: FastifySecureSession.Session
   ) {
+    if (!this.isAuthorized(session)) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
     const file = await request.file();
 
     if (!file || file.mimetype !== "model/gltf+json") {
