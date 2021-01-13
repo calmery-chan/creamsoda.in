@@ -12,6 +12,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import * as FastifySecureSession from "fastify-secure-session";
 import * as requestIp from "request-ip";
 import { UserService } from "../user/user.service";
+import { create3dModel, createAsset } from "../utils/contentful";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
 import { verifyRecaptcha } from "../utils/recaptcha";
@@ -82,5 +83,42 @@ export class AdminController {
     session.set(SESSION_USER_ID, user.id);
 
     return response.status(HttpStatus.OK).send();
+  }
+
+  // Contentful
+
+  @Post("/entries/3d-models")
+  async postWorks(
+    @Req() request: FastifyRequest,
+    @Res() response: FastifyReply
+  ) {
+    const file = await request.file();
+
+    if (!file) {
+      return response.status(HttpStatus.BAD_REQUEST).send();
+    }
+
+    const assetId = await createAsset(file);
+
+    if (!assetId) {
+      return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
+    }
+
+    let name: string | string[];
+
+    name = [].slice.call(file.filename.split(".")[0]);
+    name[0] = name[0].toUpperCase();
+    name = name.join("");
+
+    const entryId = await create3dModel({
+      assetId,
+      name,
+    });
+
+    if (!entryId) {
+      return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
+    }
+
+    return response.status(HttpStatus.OK).send({ data: { id: entryId } });
   }
 }
