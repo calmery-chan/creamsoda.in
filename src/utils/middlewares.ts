@@ -28,8 +28,10 @@ export const session = (app: NestFastifyApplication) => {
       : {};
 
   app.register(fastifySecureSession, {
-    secret: process.env.SESSION_SECRET,
-    salt: process.env.SESSION_SALT,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    secret: process.env.SESSION_SECRET!,
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    salt: process.env.SESSION_SALT!,
     cookie: {
       ...cookie,
       httpOnly: true,

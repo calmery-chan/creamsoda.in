@@ -20,7 +20,8 @@ const isSuccess = (
 export const verifyRecaptcha = async (response: string) => {
   const params = new URLSearchParams();
   params.append("response", response);
-  params.append("secret", process.env.RECAPTCHA_SECRET_KEY);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  params.append("secret", process.env.RECAPTCHA_SECRET_KEY!);
 
   try {
     const { data } = await axios.post<SuccessResponse | FailureResponse>(

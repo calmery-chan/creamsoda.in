@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   HttpStatus,
@@ -37,14 +38,21 @@ export class AdminController {
 
   @Post()
   async post(
+    @Body()
+    {
+      name,
+      password,
+      recaptcha,
+    }: {
+      name?: string;
+      password?: string;
+      recaptcha?: string;
+    },
     @Req() request: FastifyRequest,
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
     const ip = requestIp.getClientIp(request);
-    const name: string | undefined = request.body["name"];
-    const password: string | undefined = request.body["password"];
-    const recaptcha: string | undefined = request.body["recaptcha"];
 
     if (!name || !password || !recaptcha) {
       return response.status(HttpStatus.BAD_REQUEST).send();

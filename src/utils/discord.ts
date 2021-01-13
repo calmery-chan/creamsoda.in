@@ -17,7 +17,8 @@ export const send = async ({
     return;
   }
 
-  await axios.post(process.env.DISCORD_WEBHOOK_URL, {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  await axios.post(process.env.DISCORD_WEBHOOK_URL!, {
     embeds: [
       {
         color: color || 65280,
