@@ -135,3 +135,45 @@ export const create3dModel = async ({
     return null;
   }
 };
+
+export const update3dModel = async (
+  entryId: ContentfulEntryId,
+  fields: Partial<{
+    positionX: number;
+    positionY: number;
+    positionZ: number;
+    rotateX: number;
+    rotateY: number;
+    rotateZ: number;
+    scaleX: number;
+    scaleY: number;
+    scaleZ: number;
+  }>
+): Promise<boolean> => {
+  try {
+    const environment = await getEnvironment();
+    let entry = await environment.getEntry(entryId);
+
+    if (entry.sys.contentType.sys.id !== "3d-models") {
+      return false;
+    }
+
+    Object.keys(fields).forEach((_key) => {
+      const key = _key as keyof typeof fields;
+
+      if (fields[key]) {
+        entry.fields[key] = applyToMultipleLocales(fields[key]);
+      }
+    });
+
+    entry = await entry.update();
+    await entry.publish();
+
+    return true;
+  } catch (error) {
+    // Sentry.captureException(error);
+    console.log(error);
+
+    return false;
+  }
+};
