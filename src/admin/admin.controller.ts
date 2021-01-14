@@ -90,7 +90,7 @@ export class AdminController {
   // Contentful
 
   @Post("/entries/3d-models")
-  async postWorks(
+  async post3dModels(
     @Req() request: FastifyRequest,
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
