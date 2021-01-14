@@ -25,19 +25,23 @@ import {
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
 import { verifyRecaptcha } from "../utils/recaptcha";
+import { AdminService } from "./admin.service";
 
 const SESSION_USER_ID = "user_id";
 
 @Controller(resolveControllerPrefix("admin"))
 export class AdminController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly userService: UserService
+  ) {}
 
   @Get()
   async get(
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    if (!this.isAuthorized(session)) {
+    if (!(await this.adminService.isAuthorized(session))) {
       return response.status(HttpStatus.UNAUTHORIZED).send();
     }
 
@@ -60,7 +64,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    if (this.isAuthorized(session)) {
+    if (await this.adminService.isAuthorized(session)) {
       return response.status(HttpStatus.CONFLICT).send();
     }
 
@@ -104,7 +108,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    if (!this.isAuthorized(session)) {
+    if (!(await this.adminService.isAuthorized(session))) {
       return response.status(HttpStatus.FORBIDDEN).send();
     }
 
@@ -121,7 +125,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    if (!this.isAuthorized(session)) {
+    if (!(await this.adminService.isAuthorized(session))) {
       return response.status(HttpStatus.FORBIDDEN).send();
     }
 
@@ -162,7 +166,7 @@ export class AdminController {
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
   ) {
-    if (!this.isAuthorized(session)) {
+    if (!(await this.adminService.isAuthorized(session))) {
       return response.status(HttpStatus.FORBIDDEN).send();
     }
 
@@ -172,12 +176,5 @@ export class AdminController {
     }
 
     return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
-  }
-
-  // Private
-
-  private isAuthorized(session: FastifySecureSession.Session) {
-    const maybeUserId = session.get(SESSION_USER_ID);
-    return maybeUserId && this.userService.findById(maybeUserId);
   }
 }
