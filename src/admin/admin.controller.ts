@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   Param,
@@ -15,7 +16,12 @@ import * as FastifySecureSession from "fastify-secure-session";
 import * as requestIp from "request-ip";
 import { ContentfulEntryId } from "../types/Contentful";
 import { UserService } from "../user/user.service";
-import { create3dModel, createAsset, update3dModel } from "../utils/contentful";
+import {
+  create3dModel,
+  createAsset,
+  delete3dModel,
+  update3dModel,
+} from "../utils/contentful";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
 import { verifyRecaptcha } from "../utils/recaptcha";
@@ -91,6 +97,23 @@ export class AdminController {
   }
 
   // Contentful
+
+  @Delete("/entries/3d-models/:id")
+  async delete3dModels(
+    @Param("id") id: ContentfulEntryId,
+    @Res() response: FastifyReply,
+    @Session() session: FastifySecureSession.Session
+  ) {
+    if (!this.isAuthorized(session)) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
+    if (await delete3dModel(id)) {
+      return response.status(HttpStatus.OK).send();
+    }
+
+    return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
+  }
 
   @Post("/entries/3d-models")
   async post3dModels(

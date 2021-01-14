@@ -136,6 +136,22 @@ export const create3dModel = async ({
   }
 };
 
+export const delete3dModel = async (entryId: ContentfulEntryId) => {
+  try {
+    const environment = await getEnvironment();
+    let entry = await environment.getEntry(entryId);
+
+    entry = await entry.unpublish();
+    await entry.archive();
+
+    return true;
+  } catch (error) {
+    Sentry.captureException(error);
+
+    return false;
+  }
+};
+
 export const update3dModel = async (
   entryId: ContentfulEntryId,
   fields: Partial<{
