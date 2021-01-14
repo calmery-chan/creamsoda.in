@@ -187,8 +187,7 @@ export const update3dModel = async (
 
     return true;
   } catch (error) {
-    // Sentry.captureException(error);
-    console.log(error);
+    Sentry.captureException(error);
 
     return false;
   }
