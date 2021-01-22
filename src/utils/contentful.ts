@@ -143,13 +143,12 @@ export const createObject = async ({
 export const deleteObject = async (entryId: ContentfulEntryId) => {
   try {
     const environment = await getEnvironment();
-    let entry = await environment.getEntry(entryId);
+    const entry = await environment.getEntry(entryId);
 
     if (entry.sys.contentType.sys.id !== "objects") {
       return false;
     }
 
-    entry = await entry.unpublish();
     await entry.archive();
 
     return true;
