@@ -1,8 +1,8 @@
 import { createClient } from "contentful-management";
 import { Link } from "contentful-management/dist/typings/common-types";
-import { Entry } from "contentful-management/dist/typings/entities/entry";
 import { CONTENT_TYPES, LOCALES } from "../constants/contentful";
 import {
+  ContentfulAreaId,
   ContentfulAssetId,
   ContentfulEntryId,
   ContentfulFieldWithLocale,
@@ -15,8 +15,6 @@ const contentful = createClient({
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   accessToken: process.env.CONTENTFUL_PERSONAL_ACCESS_TOKEN!,
 });
-
-// Types
 
 // Helper Functions
 
@@ -35,7 +33,7 @@ const createEntry = async (
   contentType: typeof CONTENT_TYPES[number],
   fields: {
     [key: string]: {
-      [key in typeof LOCALES[number]]: Link<"Asset"> | string | number;
+      [key in typeof LOCALES[number]]: Link<string> | number | string;
     };
   }
 ) => {
@@ -96,17 +94,25 @@ export const createAsset = async (
   }
 };
 
-export const create3dModel = async ({
+// `area` に関しては Contentful 側で Entry の制限をしている、対象となる Asset や Entry が存在しないときはエラーとなるので `areaId`、`assetId` が正しいことを確認する必要はない
+export const createObject = async ({
+  areaId,
   assetId,
   name,
 }: {
+  areaId: ContentfulAreaId;
   assetId: ContentfulAssetId;
   name: string;
 }): Promise<ContentfulEntryId | null> => {
-  let entry: Entry;
-
   try {
-    entry = await createEntry("3d-models", {
+    const entry = await createEntry("objects", {
+      area: applyToMultipleLocales<Link<"Entry">>({
+        sys: {
+          id: areaId,
+          linkType: "Entry",
+          type: "Link",
+        },
+      }),
       file: applyToMultipleLocales<Link<"Asset">>({
         sys: {
           id: assetId,
@@ -126,8 +132,6 @@ export const create3dModel = async ({
       scaleZ: applyToMultipleLocales(1),
     });
 
-    entry = await entry.publish();
-
     return entry.sys.id as ContentfulEntryId;
   } catch (error) {
     Sentry.captureException(error);
@@ -136,10 +140,14 @@ export const create3dModel = async ({
   }
 };
 
-export const delete3dModel = async (entryId: ContentfulEntryId) => {
+export const deleteObject = async (entryId: ContentfulEntryId) => {
   try {
     const environment = await getEnvironment();
     let entry = await environment.getEntry(entryId);
+
+    if (entry.sys.contentType.sys.id !== "objects") {
+      return false;
+    }
 
     entry = await entry.unpublish();
     await entry.archive();
@@ -152,7 +160,7 @@ export const delete3dModel = async (entryId: ContentfulEntryId) => {
   }
 };
 
-export const update3dModel = async (
+export const updateObject = async (
   entryId: ContentfulEntryId,
   fields: Partial<{
     positionX: number;
@@ -168,12 +176,13 @@ export const update3dModel = async (
 ): Promise<boolean> => {
   try {
     const environment = await getEnvironment();
-    let entry = await environment.getEntry(entryId);
+    const entry = await environment.getEntry(entryId);
 
-    if (entry.sys.contentType.sys.id !== "3d-models") {
+    if (entry.sys.contentType.sys.id !== "objects") {
       return false;
     }
 
+    // ToDo: `area` や `file` も書き換え可能のため対応する
     Object.keys(fields).forEach((_key) => {
       const key = _key as keyof typeof fields;
 
@@ -182,8 +191,7 @@ export const update3dModel = async (
       }
     });
 
-    entry = await entry.update();
-    await entry.publish();
+    await entry.update();
 
     return true;
   } catch (error) {

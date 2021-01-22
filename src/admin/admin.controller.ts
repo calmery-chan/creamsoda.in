@@ -12,15 +12,16 @@ import {
   Session,
 } from "@nestjs/common";
 import { FastifyReply, FastifyRequest } from "fastify";
+import { Multipart } from "fastify-multipart";
 import * as FastifySecureSession from "fastify-secure-session";
 import * as requestIp from "request-ip";
-import { ContentfulEntryId } from "../types/Contentful";
+import { ContentfulAreaId, ContentfulEntryId } from "../types/Contentful";
 import { UserService } from "../user/user.service";
 import {
-  create3dModel,
+  createObject,
   createAsset,
-  delete3dModel,
-  update3dModel,
+  deleteObject,
+  updateObject,
 } from "../utils/contentful";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
@@ -102,8 +103,8 @@ export class AdminController {
 
   // Contentful
 
-  @Delete("/entries/3d-models/:id")
-  async delete3dModels(
+  @Delete("/entries/objects/:id")
+  async deleteObject(
     @Param("id") id: ContentfulEntryId,
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
@@ -112,15 +113,15 @@ export class AdminController {
       return response.status(HttpStatus.FORBIDDEN).send();
     }
 
-    if (await delete3dModel(id)) {
-      return response.status(HttpStatus.OK).send();
+    if (!(await deleteObject(id))) {
+      return response.status(HttpStatus.NOT_FOUND).send();
     }
 
-    return response.status(HttpStatus.SERVICE_UNAVAILABLE).send();
+    return response.status(HttpStatus.OK).send();
   }
 
-  @Post("/entries/3d-models")
-  async post3dModels(
+  @Post("/entries/objects")
+  async postObject(
     @Req() request: FastifyRequest,
     @Res() response: FastifyReply,
     @Session() session: FastifySecureSession.Session
@@ -130,8 +131,9 @@ export class AdminController {
     }
 
     const file = await request.file();
+    const area = (file.fields.area as unknown) as Multipart<string> | undefined;
 
-    if (!file || file.mimetype !== "model/gltf+json") {
+    if (!area || !file || file.mimetype !== "model/gltf+json") {
       return response.status(HttpStatus.BAD_REQUEST).send();
     }
 
@@ -147,7 +149,8 @@ export class AdminController {
     name[0] = name[0].toUpperCase();
     name = name.join("");
 
-    const entryId = await create3dModel({
+    const entryId = await createObject({
+      areaId: area.value as ContentfulAreaId,
       assetId,
       name,
     });
@@ -159,8 +162,8 @@ export class AdminController {
     return response.status(HttpStatus.OK).send({ data: { id: entryId } });
   }
 
-  @Put("/entries/3d-models/:id")
-  async put3dModels(
+  @Put("/entries/object/:id")
+  async putObject(
     @Body() body: string,
     @Param("id") id: ContentfulEntryId,
     @Res() response: FastifyReply,
@@ -170,8 +173,7 @@ export class AdminController {
       return response.status(HttpStatus.FORBIDDEN).send();
     }
 
-    // ToDo: 認証済みのユーザからのリクエストのみ受け取ってはいるが、値のチェックをする
-    if (await update3dModel(id, JSON.parse(body))) {
+    if (await updateObject(id, JSON.parse(body))) {
       return response.status(HttpStatus.OK).send();
     }
 
