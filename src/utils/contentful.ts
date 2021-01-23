@@ -1,3 +1,4 @@
+import { Document } from "@contentful/rich-text-types";
 import axios from "axios";
 import { createClient } from "contentful-management";
 import { Link } from "contentful-management/dist/typings/common-types";
@@ -121,20 +122,49 @@ export const getAreas = async () => {
   const { data } = await graphql<{
     areasCollection: {
       items: {
+        description: Document;
         slug: string;
+        thumbnailsCollection: {
+          items: {
+            height: number;
+            size: number;
+            url: string;
+            width: number;
+          }[];
+        };
+        title: string;
       }[];
     };
   }>(`
     {
       areasCollection(preview: true) {
         items {
+          description {
+            json
+          }
           slug
+          thumbnailsCollection {
+            items {
+              height
+              size
+              url
+              width
+            }
+          }
+          title
         }
       }
     }
   `);
 
-  return data.areasCollection.items.map(({ slug }) => slug);
+  return data.areasCollection.items.map(
+    ({ description, slug, thumbnailsCollection, title }) => ({
+      description,
+      slug,
+      thumbnails: thumbnailsCollection.items,
+      title,
+    })
+  );
 };
 
 // Objects

@@ -1,6 +1,7 @@
 {
   "author": "",
   "dependencies": {
+    "@contentful/rich-text-types": "14.1.2",
     "@nestjs/common": "7.6.5",
     "@nestjs/config": "0.6.2",
     "@nestjs/core": "7.6.5",
