@@ -23,6 +23,8 @@ import {
   deleteObject,
   updateObject,
   getAreas,
+  getObjects,
+  getAreaSlugs,
 } from "../utils/contentful";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
@@ -104,10 +106,14 @@ export class AdminController {
 
   // Contentful
 
+  // Areas
+
   @Get("/entries/areas")
   async getAreas(@Res() response: FastifyReply) {
     return response.status(HttpStatus.OK).send({ data: await getAreas() });
   }
+
+  // Objects
 
   @Delete("/entries/objects/:id")
   async deleteObject(
@@ -124,6 +130,17 @@ export class AdminController {
     }
 
     return response.status(HttpStatus.OK).send();
+  }
+
+  @Get("/entries/objects")
+  async getObjects(@Res() response: FastifyReply) {
+    const areas = await getAreaSlugs();
+
+    return response.status(HttpStatus.OK).send({
+      data: (await Promise.all(areas.map(getObjects)))
+        .map((objects, index) => ({ [areas[index]]: objects }))
+        .reduce((xs, ys) => ({ ...xs, ...ys }), {}),
+    });
   }
 
   @Post("/entries/objects")

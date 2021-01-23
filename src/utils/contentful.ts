@@ -167,6 +167,11 @@ export const getAreas = async () => {
   );
 };
 
+export const getAreaSlugs = async () => {
+  const areas = await getAreas();
+  return areas.map(({ slug }) => slug);
+};
+
 // Objects
 
 // `area` に関しては Contentful 側で Entry の制限をしている、対象となる Asset や Entry が存在しないときはエラーとなるので `areaId`、`assetId` が正しいことを確認する必要はない
@@ -232,6 +237,62 @@ export const deleteObject = async (entryId: ContentfulEntryId) => {
 
     return false;
   }
+};
+
+export const getObjects = async (areaSlug: string) => {
+  const where = areaSlug
+    ? `
+    {
+      area: {
+        slug: "${areaSlug}"
+      }
+    }
+  `
+    : "{}";
+
+  const { data } = await graphql<{
+    objectsCollection: {
+      items: {
+        file: {
+          size: number;
+          url: string;
+        };
+        name: string;
+        positionX: number;
+        positionY: number;
+        positionZ: number;
+        rotateX: number;
+        rotateY: number;
+        rotateZ: number;
+        scaleX: number;
+        scaleY: number;
+        scaleZ: number;
+      }[];
+    };
+  }>(`
+    {
+      objectsCollection(preview: true, where: ${where}) {
+        items {
+          file {
+            size
+            url
+          }
+          name
+          positionX
+          positionY
+          positionZ
+          rotateX
+          rotateY
+          rotateZ
+          scaleX
+          scaleY
+          scaleZ
+        }
+      }
+    }
+  `);
+
+  return data.objectsCollection.items;
 };
 
 export const updateObject = async (
