@@ -109,7 +109,14 @@ export class AdminController {
   // Areas
 
   @Get("/entries/areas")
-  async getAreas(@Res() response: FastifyReply) {
+  async getAreas(
+    @Res() response: FastifyReply,
+    @Session() session: FastifySecureSession.Session
+  ) {
+    if (!(await this.adminService.isAuthorized(session))) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
     return response.status(HttpStatus.OK).send({ data: await getAreas() });
   }
 
@@ -133,7 +140,14 @@ export class AdminController {
   }
 
   @Get("/entries/objects")
-  async getObjects(@Res() response: FastifyReply) {
+  async getObjects(
+    @Res() response: FastifyReply,
+    @Session() session: FastifySecureSession.Session
+  ) {
+    if (!(await this.adminService.isAuthorized(session))) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
     const areas = await getAreaSlugs();
 
     return response.status(HttpStatus.OK).send({
