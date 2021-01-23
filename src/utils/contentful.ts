@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createClient } from "contentful-management";
 import { Link } from "contentful-management/dist/typings/common-types";
 import { CONTENT_TYPES, LOCALES } from "../constants/contentful";
@@ -51,6 +52,26 @@ const getEnvironment = async (environment?: string): Promise<Environment> => {
   );
 };
 
+const graphql = async <T extends unknown>(
+  query: string
+): Promise<{
+  data: T;
+}> => {
+  const { data } = await axios.post(
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
+    {
+      query,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.CONTENTFUL_CONTENT_PREVIEW_API_ACCESS_TOKEN}`,
+      },
+    }
+  );
+
+  return data;
+};
+
 // Main
 
 export const createAsset = async (
@@ -93,6 +114,30 @@ export const createAsset = async (
     return null;
   }
 };
+
+// Areas
+
+export const getAreas = async () => {
+  const { data } = await graphql<{
+    areasCollection: {
+      items: {
+        slug: string;
+      }[];
+    };
+  }>(`
+    {
+      areasCollection(preview: true) {
+        items {
+          slug
+        }
+      }
+    }
+  `);
+
+  return data.areasCollection.items.map(({ slug }) => slug);
+};
+
+// Objects
 
 // `area` に関しては Contentful 側で Entry の制限をしている、対象となる Asset や Entry が存在しないときはエラーとなるので `areaId`、`assetId` が正しいことを確認する必要はない
 export const createObject = async ({

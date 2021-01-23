@@ -7,7 +7,7 @@ Sentry.init({
     }
 
     // Production 環境以外ではエラーの内容をそのまま出力する
-    console.error(event);
+    console.error(event.exception);
 
     return null;
   },

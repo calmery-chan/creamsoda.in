@@ -22,6 +22,7 @@ import {
   createAsset,
   deleteObject,
   updateObject,
+  getAreas,
 } from "../utils/contentful";
 import { resolveControllerPrefix } from "../utils/controller";
 import { send } from "../utils/discord";
@@ -102,6 +103,11 @@ export class AdminController {
   }
 
   // Contentful
+
+  @Get("/entries/areas")
+  async getAreas(@Res() response: FastifyReply) {
+    return response.status(HttpStatus.OK).send({ data: await getAreas() });
+  }
 
   @Delete("/entries/objects/:id")
   async deleteObject(
