@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createClient } from "contentful-management";
 import { Link } from "contentful-management/dist/typings/common-types";
-import { CONTENT_TYPES, LOCALES } from "../constants/contentful";
+import { LOCALES } from "../constants/contentful";
 import {
   ContentfulAreaId,
   ContentfulAssetId,
@@ -31,7 +31,7 @@ const applyToMultipleLocales = <T extends unknown>(
   ) as ContentfulFieldWithLocale<T>;
 
 const createEntry = async (
-  contentType: typeof CONTENT_TYPES[number],
+  contentType: string,
   fields: {
     [key: string]: {
       [key in typeof LOCALES[number]]: Link<string> | number | string;
