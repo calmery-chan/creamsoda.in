@@ -257,6 +257,13 @@ export const getObjects = async (areaSlug: string) => {
           size: number;
           url: string;
         };
+        linkedFrom: {
+          worksCollection: {
+            items: {
+              slug: string;
+            }[];
+          };
+        };
         name: string;
         positionX: number;
         positionY: number;
@@ -277,6 +284,13 @@ export const getObjects = async (areaSlug: string) => {
             size
             url
           }
+          linkedFrom {
+            worksCollection {
+              items {
+                slug
+              }
+            }
+          }
           name
           positionX
           positionY
@@ -292,7 +306,11 @@ export const getObjects = async (areaSlug: string) => {
     }
   `);
 
-  return data.objectsCollection.items;
+  return data.objectsCollection.items.map((object) => ({
+    ...object,
+    linkedFrom: undefined,
+    works: object.linkedFrom.worksCollection.items.map(({ slug }) => slug),
+  }));
 };
 
 export const updateObject = async (
