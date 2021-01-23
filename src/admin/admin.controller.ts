@@ -139,6 +139,21 @@ export class AdminController {
     return response.status(HttpStatus.OK).send();
   }
 
+  @Get("/entries/objects/:id")
+  async getObject(
+    @Param("id") areaId: string,
+    @Res() response: FastifyReply,
+    @Session() session: FastifySecureSession.Session
+  ) {
+    if (!(await this.adminService.isAuthorized(session))) {
+      return response.status(HttpStatus.FORBIDDEN).send();
+    }
+
+    return response.status(HttpStatus.OK).send({
+      data: await getObjects(areaId),
+    });
+  }
+
   @Get("/entries/objects")
   async getObjects(
     @Res() response: FastifyReply,
