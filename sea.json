@@ -1,0 +1,424 @@
+{
+  "objects": [
+    {
+      "transform": {
+        "position": {
+          "x": 1.5,
+          "y": 2,
+          "z": 4.35
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/aquarium"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": -0.8,
+          "y": 5.1,
+          "z": -7.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/cirno"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/deep_sea"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 1.8,
+          "y": 2.1,
+          "z": -3.25
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/flowers"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": -0.85,
+          "y": 5.05,
+          "z": -7.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/gear"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": -0.8,
+          "y": 5.05,
+          "z": -7.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/goldfish"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 1.2,
+          "y": 2,
+          "z": -16.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/hydrangea"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 1.2,
+          "y": 1.75,
+          "z": -25
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/melon_soda"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 1,
+          "y": 1.95,
+          "z": -20.25
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/submerged"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/beams"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/bottles"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/cages"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/columns"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/crystals"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/cups"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/grasses"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/pillars"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/ruins"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/stones"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/tables"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8080/objects/areas/sea/walls"
+    }
+  ]
+}
