@@ -4,11 +4,12 @@ import { AdminModule } from "./admin/admin.module";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ChekiModule } from "./cheki/cheki.module";
+import { MultiplayGateway } from "./multiplay.gateway";
 import { PrismaService } from "./prisma/prisma.service";
 
 @Module({
   imports: [ConfigModule.forRoot(), AdminModule, ChekiModule],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [AppService, PrismaService, MultiplayGateway],
 })
 export class AppModule {}
