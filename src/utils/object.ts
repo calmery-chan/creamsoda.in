@@ -46,7 +46,7 @@ export const object = (
             : {
                 x: transform.position?.x || defaultTransform.position.x,
                 y: transform.position?.y || defaultTransform.position.y,
-                z: transform.position?.z || defaultTransform.position.z,
+                z: (transform.position?.z || defaultTransform.position.z) * -1,
               },
           rotation: isNumber(transform.rotation)
             ? {
@@ -55,7 +55,7 @@ export const object = (
                 z: transform.rotation,
               }
             : {
-                x: transform.rotation?.x || defaultTransform.rotation.x,
+                x: (transform.rotation?.x || defaultTransform.rotation.x) * -1,
                 y: transform.rotation?.y || defaultTransform.rotation.y,
                 z: transform.rotation?.z || defaultTransform.rotation.z,
               },
@@ -69,7 +69,7 @@ export const object = (
         },
     url:
       process.env.NODE_ENV === "production"
-        ? `https://assets.metaneno.art/objects/${filePath}`
-        : `http://localhost:8080/objects/${filePath}`,
+        ? `https://assets.metaneno.art/objects/${filePath}.glb`
+        : `http://localhost:8000/objects/${filePath}.glb`,
   };
 };

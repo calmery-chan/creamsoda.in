@@ -3,33 +3,33 @@
     {
       "transform": {
         "position": {
-          "x": 1.5,
-          "y": 2,
-          "z": 4.35
+          "x": 2.485,
+          "y": 1.585,
+          "z": 19.2
         },
         "rotation": {
           "x": 0,
-          "y": 0,
+          "y": 117,
           "z": 0
         },
         "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/aquarium"
+      "url": "http://localhost:8000/objects/characters/hitugi.glb"
     },
     {
       "transform": {
         "position": {
-          "x": -0.8,
-          "y": 5.1,
-          "z": -7.5
+          "x": 1,
+          "y": 1.85,
+          "z": -3.5
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -38,18 +38,18 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/cirno"
+      "url": "http://localhost:8000/objects/areas/sea/aquarium.glb"
     },
     {
       "transform": {
         "position": {
-          "x": 0,
-          "y": 0,
-          "z": 0
+          "x": 1.65,
+          "y": 2.1,
+          "z": 6.85
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -58,18 +58,38 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/deep_sea"
+      "url": "http://localhost:8000/objects/areas/sea/cirno.glb"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": -6.865,
+          "y": 2.45,
+          "z": 3.38
+        },
+        "rotation": {
+          "x": 11,
+          "y": -88,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8000/objects/areas/sea/deep_sea.glb"
     },
     {
       "transform": {
         "position": {
           "x": 1.8,
           "y": 2.1,
-          "z": -3.25
+          "z": 3.25
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -78,18 +98,18 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/flowers"
+      "url": "http://localhost:8000/objects/areas/sea/flowers.glb"
     },
     {
       "transform": {
         "position": {
-          "x": -0.85,
-          "y": 5.05,
-          "z": -7.5
+          "x": -6.28,
+          "y": 1.89,
+          "z": 8.175
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -98,18 +118,18 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/gear"
+      "url": "http://localhost:8000/objects/areas/sea/gear.glb"
     },
     {
       "transform": {
         "position": {
-          "x": -0.8,
-          "y": 5.05,
-          "z": -7.5
+          "x": -5.4,
+          "y": 2.225,
+          "z": -1.9
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -118,18 +138,18 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/goldfish"
+      "url": "http://localhost:8000/objects/areas/sea/goldfish.glb"
     },
     {
       "transform": {
         "position": {
-          "x": 1.2,
-          "y": 2,
-          "z": -16.5
+          "x": 1.17,
+          "y": 1.98,
+          "z": 16.5
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -138,19 +158,19 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/hydrangea"
+      "url": "http://localhost:8000/objects/areas/sea/hydrangea.glb"
     },
     {
       "transform": {
         "position": {
-          "x": 1.2,
-          "y": 1.75,
-          "z": -25
+          "x": 1.55,
+          "y": 1.71,
+          "z": 26.5
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
-          "z": 0
+          "x": 11,
+          "y": -91,
+          "z": 5
         },
         "scale": {
           "x": 1,
@@ -158,18 +178,18 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/melon_soda"
+      "url": "http://localhost:8000/objects/areas/sea/melon_soda.glb"
     },
     {
       "transform": {
         "position": {
-          "x": 1,
-          "y": 1.95,
-          "z": -20.25
+          "x": 0.285,
+          "y": 3.055,
+          "z": 21
         },
         "rotation": {
-          "x": 0,
-          "y": 0,
+          "x": 11,
+          "y": -90,
           "z": 0
         },
         "scale": {
@@ -178,27 +198,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/submerged"
-    },
-    {
-      "transform": {
-        "position": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "rotation": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        }
-      },
-      "url": "http://localhost:8080/objects/areas/sea/beams"
+      "url": "http://localhost:8000/objects/areas/sea/submerged.glb"
     },
     {
       "transform": {
@@ -218,7 +218,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/bottles"
+      "url": "http://localhost:8000/objects/areas/sea/terrain.glb"
     },
     {
       "transform": {
@@ -238,7 +238,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/cages"
+      "url": "http://localhost:8000/objects/areas/sea/beams.glb"
     },
     {
       "transform": {
@@ -258,7 +258,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/columns"
+      "url": "http://localhost:8000/objects/areas/sea/bottles.glb"
     },
     {
       "transform": {
@@ -278,7 +278,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/crystals"
+      "url": "http://localhost:8000/objects/areas/sea/cages.glb"
     },
     {
       "transform": {
@@ -298,7 +298,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/cups"
+      "url": "http://localhost:8000/objects/areas/sea/columns.glb"
     },
     {
       "transform": {
@@ -318,7 +318,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/grasses"
+      "url": "http://localhost:8000/objects/areas/sea/crystals.glb"
     },
     {
       "transform": {
@@ -338,7 +338,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/pillars"
+      "url": "http://localhost:8000/objects/areas/sea/cups.glb"
     },
     {
       "transform": {
@@ -358,7 +358,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/ruins"
+      "url": "http://localhost:8000/objects/areas/sea/grasses.glb"
     },
     {
       "transform": {
@@ -378,7 +378,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/stones"
+      "url": "http://localhost:8000/objects/areas/sea/pillars.glb"
     },
     {
       "transform": {
@@ -398,7 +398,7 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/tables"
+      "url": "http://localhost:8000/objects/areas/sea/ruins.glb"
     },
     {
       "transform": {
@@ -418,7 +418,47 @@
           "z": 1
         }
       },
-      "url": "http://localhost:8080/objects/areas/sea/walls"
+      "url": "http://localhost:8000/objects/areas/sea/stones.glb"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8000/objects/areas/sea/tables.glb"
+    },
+    {
+      "transform": {
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        }
+      },
+      "url": "http://localhost:8000/objects/areas/sea/walls.glb"
     }
   ]
 }
