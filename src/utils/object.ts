@@ -56,7 +56,7 @@ export const object = (
               }
             : {
                 x: (transform.rotation?.x || defaultTransform.rotation.x) * -1,
-                y: transform.rotation?.y || defaultTransform.rotation.y,
+                y: (transform.rotation?.y || defaultTransform.rotation.y) * -1,
                 z: transform.rotation?.z || defaultTransform.rotation.z,
               },
           scale: isNumber(transform.scale)
